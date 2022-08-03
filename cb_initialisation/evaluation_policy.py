@@ -46,19 +46,25 @@ class PercentageInteraction(EvaluationPolicy):
             else self.nonp_methods[method]
         )
 
-        for itr, item in enumerate(top_k_items):
+        num_itr_npers = 1
+        for itr, item in enumerate(top_k_items, 1):
 
             if self.test_consumption_matrix[uid, item] >= self.threshold:
                 not_recommended[item] = 0
                 num_items += 1
+            
             rec_items.append([uid, item, self.test_consumption_matrix[uid, item], -1])
+            
+            if (itr % self.interaction_size_npers) == 0:
+                num_itr_npers += 1
+            
             if num_items == max_items:
                 break
 
         items_not_recommended = np.nonzero(not_recommended)[0]
         return [
             uid,
-            int((itr / self.interaction_size_npers) + 0.5),
+            num_itr_npers,
             rec_items,
             items_not_recommended,
             not_recommended,
