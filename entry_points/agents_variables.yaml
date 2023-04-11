@@ -1,0 +1,131 @@
+- WSCB:
+    SimpleAgent:
+      action_selection_policy:
+        ASPGreedy: {}
+      value_function:
+        WSCB:
+          alpha: linspace(0.1, 1, 10)
+          num_lat: [5, 10, 20]
+
+- EGreedy:
+    SimpleAgent:
+      action_selection_policy:
+        ASPEGreedy:
+          epsilon: linspace(0.001, 1, 10)
+          # epsilon: [0.4,0.01,0.001]
+      value_function:
+        EGreedy: {}
+
+- UCB:
+    SimpleAgent:
+      action_selection_policy:
+        ASPGreedy: {}
+      value_function:
+        UCB:
+          # c: linspace(0.001, 1, 10)
+          c: [0.01,0.02,0.003,0.1]
+
+- LinearUCB:
+    SimpleAgent:
+      action_selection_policy:
+        ASPGreedy: {}
+      value_function:
+        LinearUCB:
+          alpha: linspace(0.1, 1, 10)
+          item_var: 0.01
+          iterations: 20
+          num_lat: [10, 15, 20]
+          stop_criteria: 0.0009
+          user_var: 0.01
+          var: 0.05
+
+- LinearEGreedy:
+    SimpleAgent:
+      action_selection_policy:
+        ASPEGreedy:
+          epsilon: linspace(0.001, 1, 10)
+          # epsilon: linspace(0.1, 1, 5)
+      value_function:
+        LinearEGreedy:
+          item_var: 0.01
+          iterations: 20
+          num_lat: [10, 15, 20]
+          stop_criteria: 0.0009
+          user_var: 0.01
+          var: 0.05
+  
+- ThompsonSampling:
+    SimpleAgent:
+      action_selection_policy:
+        ASPGreedy: {}
+      value_function:
+        ThompsonSampling:
+          alpha_0: linspace(0.1, 1, 10)
+          beta_0: linspace(1, 100, 10)
+
+- PTS:
+    SimpleAgent:
+      action_selection_policy:
+        ASPGreedy: {}
+      value_function:
+        PTS:
+          num_lat: 10
+          num_particles: [5, 10]
+          var: linspace(0.01, 0.5, 4)
+          var_u: linspace
+          var_v: linspace(0.3, 5.0, 3)
+
+- GLM_UCB:
+    SimpleAgent:
+      action_selection_policy:
+        ASPGreedy: {}
+      value_function:
+        GLM_UCB:
+          c: [0.1, 0.5, 1, 2, 4, 8]
+          item_var: 0.01
+          iterations: 20
+          num_lat: [5, 10, 20]
+          stop_criteria: 0.0009
+          user_var: 0.01
+          var: 0.05
+
+- NICF:
+    SimpleAgent:
+      action_selection_policy:
+        ASPGreedy: {}
+      value_function:
+        NICF:
+          batch: 128
+          clip_param: 0.2
+          dropout_rate: [0.01, 0.1]
+          gamma: 0.0
+          inner_epoch: 50
+          latent_factor: 10
+          learning_rate: 1
+          num_blocks: [1, 2, 3]
+          num_heads: [1, 2, 3]
+          restore_model: false
+          rnn_layer: [1, 2]
+          time_step: 3
+          training_epoch: 30000
+
+- ClusterBandit:
+    SimpleAgent:
+      action_selection_policy:
+        ASPGreedy: {}
+      value_function:
+        ClusterBandit:
+          B: 5
+          C: 0.5
+          D: 3
+          num_clusters: [4, 8]
+          num_lat: [5, 10, 20]
+
+- ICTRTS:
+    SimpleAgent:
+      action_selection_policy:
+        ASPGreedy: {}
+      value_function:
+        ICTRTS:
+          num_lat: [5, 10, 20]
+          num_particles: [2, 5, 10]
